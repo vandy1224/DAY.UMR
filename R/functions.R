@@ -400,11 +400,12 @@ Create_Figure <- function(data, errorbars, test_level, yaxis_label, group){
                    med_se_neg = as.numeric(unlist(med_se_neg_errorbar)))
   if(test_level=="parametric" & errorbars=="sd"){
     figure <- figure %>% select(1, 5:3) # Filter undesired columns
-    print(figure %>% ggplot(aes(x= var_names, y= figure[[1]])) +
-            geom_col(fill = "darkred", width = 0.5) +
-            geom_errorbar(aes(x=var_names, ymin = figure[[2]], ymax = figure[[3]]), width = 0.1) +
-            labs(y = yaxis_lab, x=xaxis_lab) +
-            scale_y_continuous(breaks = seq(round(1.05*min(figure[[2]]), 0), round(1.1*(max(figure[[3]])), 2))))
+  print(figure %>% ggplot(aes(x = var_names, y = figure[[1]])) +
+        geom_col(fill = "darkred", width = 0.5) +
+        geom_errorbar(aes(x = var_names, ymin = figure[[2]], ymax = figure[[3]]), width = 0.1) +
+        labs(y = yaxis_lab, x = xaxis_lab) +
+        scale_y_continuous(breaks = seq(round(1.05 * min(figure[[2]]), 0), round(1.1 * max(figure[[3]]), 2))))
+
   }else if(test_level=="parametric" & errorbars=="se"){
     figure <- figure %>% select(1, 7:6, 3) # Filter undesired columns
     print(figure %>% ggplot(aes(x= var_names, y= figure[[1]])) +
